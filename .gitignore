@@ -1,0 +1,74 @@
+# Global Git Ignore for JobHunt Project
+
+# OS-specific
+Thumbs.db
+desktop.ini
+.DS_Store
+
+# Environment files
+.env
+.env.*
+
+
+# Logs
+logs/
+*.log
+
+# Python cache and tooling
+__pycache__/
+*.py[cod]
+*.so
+.venv/
+venv/
+ENV/
+env/
+.nox/
+.tox/
+.mypy_cache/
+.pytype/
+.ruff_cache/
+.pylint.d/
+
+# Test and coverage artifacts
+.pytest_cache/
+.coverage
+.coverage.*
+coverage.xml
+htmlcov/
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Python build & packaging
+build/
+dist/
+.eggs/
+*.egg-info/
+*.egg
+sdist/
+downloads/
+
+# Data and model artifacts (large files)
+dataset/
+embeddings/
+ai_model/salary_predection/model/
+
+# Frontend (Vite/Node)
+/frontend/node_modules/
+/frontend/dist/
+/frontend/.vite/
+/frontend/.cache/
+/frontend/.eslintcache
+
+# Package managers caches
+.pnpm-store/
+
+# IDE/editor settings
+.vscode/
+.idea/
+*.code-workspace
+
+# Temporary files
+*.tmp
+*.temp
+~$*

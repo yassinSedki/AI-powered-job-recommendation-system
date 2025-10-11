@@ -1,0 +1,53 @@
+[project]
+name = "jobhunt"
+version = "0.1.0"
+description = ""
+authors = [
+    {name = "yassinSedki",email = "sedkiyassin19@gmail.com"}
+]
+readme = "README.md"
+requires-python = ">=3.12,<4.0"
+dependencies = [
+    # Core data manipulation and ML
+    "pandas>=2.3.2,<3.0.0",
+    "numpy>=2.3.3,<3.0.0",
+    "scikit-learn (>=1.7.2,<2.0.0)",
+    
+    # Embedding and NLP
+    "cohere>=5.0.0,<6.0.0",
+    
+    # Data visualization
+    "matplotlib>=3.7.0,<4.0.0",
+    "seaborn>=0.12.0,<1.0.0",
+    
+    # Statistical analysis
+    "scipy>=1.11.0,<2.0.0",
+    
+    # Jupyter notebook support
+    "jupyter>=1.0.0,<2.0.0",
+    "ipykernel>=6.25.0,<7.0.0",
+    "jupyterlab>=4.0.0,<5.0.0",
+    
+    # Enhanced notebook experience
+    "ipywidgets>=8.0.0,<9.0.0",
+    "tqdm>=4.65.0,<5.0.0",
+    "plotly>=6.3.0,<7.0.0",
+    "nltk>=3.9.1,<4.0.0",
+    "wordcloud>=1.9.4,<2.0.0",
+    
+    # Environment configuration
+    "python-dotenv>=1.0.0,<2.0.0",
+    "lightgbm (>=4.6.0,<5.0.0)",
+    "joblib (>=1.5.2,<2.0.0)",
+    "pytest (>=8.4.2,<9.0.0)",
+    "uvicorn (>=0.37.0,<0.38.0)",
+    "fastapi (>=0.118.2,<0.119.0)"
+]
+
+[tool.poetry]
+package-mode = false
+
+
+[build-system]
+requires = ["poetry-core>=2.0.0,<3.0.0"]
+build-backend = "poetry.core.masonry.api"
