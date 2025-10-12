@@ -1,9 +1,9 @@
 # JobHunt
 
-An end-to-end, AI-powered job recommendation and salary prediction system. It blends traditional feature engineering with modern text embeddings and explainable multi-scorer logic, exposed via a FastAPI backend and a Vite React frontend.
+An end-to-end, AI-powered job recommendation and salary prediction system. It blends traditional feature engineering with modern text embeddings and multi-scorer logic, exposed via a FastAPI backend and a Vite React frontend.
 
 ## Why this project matters
-- Personalized, explainable recommendations: experience, location, and embedding-based signals are combined with clear, tunable weights.
+- Personalized recommendations: experience, location, and embedding-based signals are combined with clear, tunable weights.
 - Practical salary prediction: uses engineered features and/or 1024-d embeddings to estimate compensation.
 - Production-ready surfaces: REST API + modern frontend for quick demos and integration.
 - Realistic scale: built and validated on a 10k job postings dataset for robust testing and iteration.
@@ -58,7 +58,7 @@ An end-to-end, AI-powered job recommendation and salary prediction system. It bl
 - POST `/api/recommendations` — recommendations for given criteria.
 - POST `/api/predict_and_recommend` — compute embedding, predict salary, and return recommendations.
 
-## Recommendation Logic (explainable)
+## Recommendation Logic
 - Scorers: Experience, Location, Embedding.
 - Defaults: Experience=0.9, Location=0.9 (embedding complements these).
 - Combine: per-scorer outputs min-max normalized to [0,1], then weighted average forms final score.
@@ -101,7 +101,7 @@ An end-to-end, AI-powered job recommendation and salary prediction system. It bl
 ## Strengths
 - Clear separation of concerns between backend, AI modules, and frontend.
 - Embedding provider abstraction enables swapping providers without changing downstream logic.
-- Explainable recommendation via modular filters and scorers with tunable weights.
+- Recommendation via modular filters and scorers with tunable weights.
 - Practical scripts for dataset handling and embedding generation, including rate limiting and logging.
 - Strong frontend stack with modern patterns (React Query, routing, Tailwind/Shadcn).
 
