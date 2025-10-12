@@ -75,3 +75,45 @@ An end-to-end, AI-powered job recommendation and salary prediction system. It bl
 - Embeddings: ensure `COHERE_API_KEY` is set and provider reachable.
 - Data missing: confirm files exist under `dataset/`.
 - CORS/ports: adjust `VITE_API_BASE_URL` and/or `BACKEND_PORT`, then restart dev servers.
+
+---
+
+## Architecture Overview
+- Backend (FastAPI): exposes REST endpoints for health, job details, salary prediction, recommendations, and a combined predict-and-recommend flow.
+- AI Model Modules:
+  - Embeddings: provider-agnostic service (default: Cohere) with batch/single embedding support and dataset processing.
+  - Feature Engineering: text cleaning/normalization and utilities used across pipelines.
+  - Recommendation: pluggable filters (e.g., gender, work type, education) and scorers (experience, location, embedding similarity) combined via weighted average.
+  - Salary Prediction: trained model consuming structured features + PCA-reduced embeddings, with a feature mapper for categorical normalization.
+- Frontend (React + Vite): modern UI using React Router, React Query, axios, Tailwind/Shadcn UI components.
+- Scripts: dataset sampling/reduction, embedding generation with rate limiting/logging, and functional tests for embeddings/recommendations.
+
+## End-to-End Flow
+1) User provides role, skills, experience, education, location (and optional preferences) in the frontend.
+2) Backend processes request:
+   - Build query text (role + skills), generate embedding (if provider and key available).
+   - Filter jobs by user criteria.
+   - Score jobs via Experience, Location, and Embedding scorers with configurable weights.
+   - Return top-N recommendations with metadata and total score.
+3) Salary predictions combine engineered features with PCA-reduced embeddings to estimate compensation.
+4) Frontend displays results and allows navigation to job details.
+
+## Strengths
+- Clear separation of concerns between backend, AI modules, and frontend.
+- Embedding provider abstraction enables swapping providers without changing downstream logic.
+- Explainable recommendation via modular filters and scorers with tunable weights.
+- Practical scripts for dataset handling and embedding generation, including rate limiting and logging.
+- Strong frontend stack with modern patterns (React Query, routing, Tailwind/Shadcn).
+
+## Solidity Assessment
+- Overall: Solid architecture and modular AI components; functional scripts/test flows are present. Suitable for demos and further production hardening.
+- Considerations:
+  - Ensure artifacts (embeddings, PCA, feature mapper, model) are present and versioned.
+  - Guard backend against missing/invalid embedding provider/API key with graceful fallbacks.
+  - Standardize dataset schema (e.g., experience_min/experience_max vs. min_experience/max_experience) across the pipeline.
+
+
+## Dependency Notes
+- Python: tested with 3.12.
+- Verify compatibility of ML libraries (e.g., scikit-learn, lightgbm) with your Python version.
+- Re-run `poetry lock` after fixing specifiers, then `poetry install`.
