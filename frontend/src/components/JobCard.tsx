@@ -29,17 +29,17 @@ export default function JobCard({ job, onViewOnMap }: JobCardProps) {
           
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Briefcase className="w-4 h-4" />
-            <span>{job.work_type}</span>
+            <span>{job.Work_Type}</span>
           </div>
 
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <GraduationCap className="w-4 h-4" />
-            <span>{job.qualification}</span>
+            <span>{job.Qualifications}</span>
           </div>
 
           <div className="flex items-center gap-2 text-sm text-muted-foreground">
             <Clock className="w-4 h-4" />
-            <span>{job.experience}</span>
+            <span>{job.Experience}</span>
           </div>
         </div>
 
