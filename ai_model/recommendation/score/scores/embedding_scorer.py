@@ -222,16 +222,19 @@ class EmbeddingSimilarityScorer(BaseJobScorer):
         if not self._embeddings_loaded:
             self.load_embeddings()
         
-        # Create job ID to index mapping
-        job_id_to_index = {job_id: idx for idx, job_id in enumerate(self.embedding_loader.job_ids)}
+        # Create job ID to index mapping (normalize IDs to string to avoid type mismatches)
+        job_id_to_index = {str(job_id): idx for idx, job_id in enumerate(self.embedding_loader.job_ids)}
         
         # Initialize scores array
         scores = np.zeros(len(jobs_df))
         
         # Calculate scores for jobs that have embeddings
+        matched_count = 0
         for i, job_id in enumerate(jobs_df['Job_Id']):
-            if str(job_id) in job_id_to_index:
-                job_index = job_id_to_index[str(job_id)]
+            key = str(job_id)
+            if key in job_id_to_index:
+                matched_count += 1
+                job_index = job_id_to_index[key]
                 job_embedding = self.embedding_loader.embeddings[job_index].reshape(1, -1)
                 similarity = cosine_similarity(query_embedding.reshape(1, -1), job_embedding)[0, 0]
                 scores[i] = max(0.0, similarity)  # Ensure non-negative scores
@@ -243,6 +246,11 @@ class EmbeddingSimilarityScorer(BaseJobScorer):
         
         # Log scoring info
         self.log_scoring_info(len(jobs_df), user_criteria, score_series)
+        try:
+            total = len(jobs_df)
+            self.logger.info(f"Embedding scorer matched {matched_count}/{total} job IDs ({(matched_count/total)*100:.1f}%)")
+        except Exception:
+            pass
         
         return score_series
     
