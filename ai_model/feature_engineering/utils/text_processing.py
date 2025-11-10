@@ -162,7 +162,7 @@ def clean_and_combine_text(role: Union[str, None] = None,
 def process_text_features(df: pd.DataFrame, 
                          role_col: str = 'Role',
                          job_title_col: str = 'Job Title', 
-                         skills_col: str = 'Skills') -> pd.DataFrame:
+                         skills_col: str = 'skills') -> pd.DataFrame:
     """
     Process text features from a DataFrame with role, job title, and skills columns.
     

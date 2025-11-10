@@ -14,7 +14,7 @@ def create_10k_sample():
     print("Loading complete dataset with features...")
     
     # Load the complete dataset
-    input_file = "dataset/complete_dataset_with_features.csv"
+    input_file = "dataset/dataset_with_features.csv"
     df = pd.read_csv(input_file)
     
     print(f"Original dataset: {len(df):,} rows, {len(df.columns)} columns")
@@ -29,7 +29,7 @@ def create_10k_sample():
     print(f"Sample created: {len(sampled_df):,} rows")
     
     # Save the sampled dataset
-    output_file = "dataset/complete_dataset_with_features_10k.csv"
+    output_file = "dataset/dataset_with_features_10k.csv"
     sampled_df.to_csv(output_file, index=False)
     
     print(f"Sample saved to: {output_file}")

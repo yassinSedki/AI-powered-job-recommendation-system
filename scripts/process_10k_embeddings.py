@@ -358,7 +358,7 @@ def main():
     
     try:
         # Configuration
-        dataset_file = project_root / "dataset" / "complete_dataset10k.csv"
+        dataset_file = project_root / "dataset" / "dataset_with_features_10k.csv"
         output_dir = project_root / "embeddings" 
         
         # Create output directory
