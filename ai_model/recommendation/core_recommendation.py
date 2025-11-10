@@ -138,14 +138,14 @@ def recommend_jobs(
             
             # Configure scorers based on available criteria
             if user_experience is not None:
-                weight = scoring_weights.get('experience', 0.8) if scoring_weights else 0.8
+                weight = scoring_weights.get('experience', 0.7) if scoring_weights else 0.7
                 scoring_manager.configure_scorer('experience', {
                     'weight': weight,
                     'parameters': {}
                 })
             
             if 'latitude' in scoring_criteria and 'longitude' in scoring_criteria:
-                weight = scoring_weights.get('location', 1) if scoring_weights else 1
+                weight = scoring_weights.get('location', 0.8) if scoring_weights else 0.8
                 scoring_manager.configure_scorer('location', {
                     'weight': weight,
                     'parameters': {
@@ -155,7 +155,7 @@ def recommend_jobs(
                 })
             
             if 'query_embedding' in scoring_criteria:
-                weight = scoring_weights.get('embedding', 1.2) if scoring_weights else 1.2
+                weight = scoring_weights.get('embedding', 1.5) if scoring_weights else 1.7
                 scoring_manager.configure_scorer('embedding', {
                     'weight': weight,
                     'parameters': {
